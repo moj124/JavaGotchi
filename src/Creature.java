@@ -41,17 +41,22 @@ public class Creature {
     }
     public String checkStatus(){
         String status="";
-        if (happiness <=6){
-            status +="Oh, "+this.getName() + " is feeling sad!\n";
+        if(fullness <=0 ||happiness<=0 ||energy<=0){
+            status += "Oh no! " + this.getName() + " is dead. You're a terrible owner!";
         }
-        if (energy <=6){
-            status +="Hmm, "+this.getName() + " is feeling tired\n";
+        else{
+            if (happiness <=6){
+                status +="Oh, "+this.getName() + " is feeling sad!\n";
+            }
+            if (energy <=6){
+                status +="Hmm, "+this.getName() + " is feeling tired\n";
+            }
+            if (fullness<=6){
+                status +="Whoops, "+this.getName() + " is feeling super hungry!\n";
+            }
+        }
 
-        }
-        if (fullness<=6){
-            status +="Whoops, "+this.getName() + " is feeling super hungry!";
 
-        }
         return status;
     }
     public void play(){
