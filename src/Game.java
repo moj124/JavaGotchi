@@ -3,26 +3,28 @@ public class Game {
     Scanner scanner = new Scanner(System.in);
     Creature creature;
     boolean userQuits = false;
+
     public void run(){
 
-
         startTutorial();
-        while(!userQuits){
-            interact();
-            this.creature.checkStatus();
 
+        while(!userQuits) {
+            interact();
         }
         System.out.println("Awh. Time to put " + this.creature.getName() +" to sleep.");
+        System.out.println();
     }
+
     private  void  startTutorial(){
 
-       System.out.println("Hi there! Welcome to Javagotchi.");
-       System.out.println("What's the name of your creature?");
+        System.out.println("Hi there! Welcome to Javagotchi.");
+        System.out.println("What's the name of your creature?");
 
-       String name = scanner.nextLine();
-       this.creature = new Creature(name);
+        String name = scanner.nextLine();
+        this.creature = new Creature(name);
 
         System.out.println("Great, you can now meet " + this.creature.getName() + "!");
+        System.out.println();
     }
 
     private void interact(){
@@ -37,20 +39,33 @@ public class Game {
 
         switch (choice){
             case 1:
-                creature.play();
+                this.creature.play();
+                System.out.println(this.creature.checkStatus());
+
                 break;
             case 2:
-                creature.eat();
+                this.creature.eat();
+                System.out.println(this.creature.checkStatus());
+
                 break;
             case 3:
-                creature.sleep();
+                System.out.println("How many hours would you like to sleep from 0 to 4 ?)");
+
+                int option = scanner.nextInt();
+
+                this.creature.sleep(option);
+                System.out.println(this.creature.checkStatus());
+
                 break;
             case 4:
                 userQuits = true;
                 break;
             default:
                 System.out.println("Whoops, you have to pick a number between 1-4 (inclusive)");
+                System.out.println(this.creature.checkStatus());
                 break;
         }
+        System.out.println();
     }
+
 }
